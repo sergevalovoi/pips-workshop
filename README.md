@@ -1,6 +1,6 @@
 # Pip's Workshop — a simulated AI coworker you teach, review and delegate to
 
-> **Simulation / Demo.** Pip is a scripted character. There are no real model calls, no connected accounts, no network requests and nothing is ever sent. The data is synthetic.
+> **Simulation / Demo.** Pip is a scripted character. There are no real model calls, no connected accounts, no external AI/API requests and nothing is ever sent. The data is synthetic.
 
 A buildless HTML/CSS/JS prototype of one idea: turning a chat habit into a **reliable recurring process** with visible control.
 
@@ -15,7 +15,7 @@ You work one process (a weekly hiring and ops brief) through a cutaway workshop 
 Levels borrow a human-management metaphor (situational leadership). They are demo labels, not a validated measure of AI behavior.
 
 ## Demo
-Live demo: https://ai-team-world-lab.valovoysuccess.chatgpt.site — **publication pending**; this link may not work until the owner confirms it is published.
+Try the [published interactive demo](https://ai-team-world-lab.valovoysuccess.chatgpt.site). No installation or account connection is needed.
 
 Source and feedback: https://github.com/sergevalovoi/pips-workshop · [Report a problem](https://github.com/sergevalovoi/pips-workshop/issues/new/choose)
 
