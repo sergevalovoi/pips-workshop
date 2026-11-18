@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pip's Workshop — Simulation / Demo</title>
+<meta name="description" content="Simulation / Demo: a playful workshop where you teach an AI coworker one recurring process, review its work, fix it, and delegate more only when the evidence supports it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 29C3 14 10 3 16 3s13 11 11 26z' fill='%236B4FA3'/%3E%3Ccircle cx='12' cy='15' r='2.5' fill='%23fff'/%3E%3Ccircle cx='20' cy='15' r='2.5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#pane">Skip to the chat and details</a>
+<header class="top">
+  <div class="mark"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 29C3 14 10 3 16 3s13 11 11 26z" fill="#6B4FA3"/><circle cx="12" cy="15" r="2.5" fill="#fff"/><circle cx="20" cy="15" r="2.5" fill="#fff"/></svg><span>Pip's Workshop</span></div>
+  <div class="banner" role="note"><strong>Simulation / Demo</strong> · scripted AI · no account connected <button type="button" class="linkbtn" data-act="about">What's simulated?</button></div>
+  <div class="tools">
+    <button type="button" class="btn small" data-act="help">Shortcuts <kbd>?</kbd></button>
+    <button type="button" class="btn small" data-act="export">Export JSON</button>
+    <button type="button" class="btn small danger" data-act="reset-ask">Reset demo</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="world" aria-label="Workplace">
+    <div class="scroll" id="scroll">
+      <div class="inner" id="inner">
+        <svg id="world" viewBox="0 0 960 400" role="group" aria-label="Workplace: four stations and one coworker"></svg>
+        <div id="bubble" class="bubble" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p id="status" class="statusline"></p>
+    <div id="worldinfo" class="info"></div>
+    <p id="live" class="sr" aria-live="polite"></p>
+  </section>
+
+  <section class="pane" id="pane" aria-label="Chat and details" tabindex="-1">
+    <div id="nextbar" class="nextbar"></div>
+    <div class="tabs" role="tablist" aria-label="Details">
+      <button role="tab" id="tab-chat" aria-controls="p-chat" data-tab="chat">Chat</button>
+      <button role="tab" id="tab-task" aria-controls="p-task" data-tab="task">Task</button>
+      <button role="tab" id="tab-evidence" aria-controls="p-evidence" data-tab="evidence">Evidence</button>
+      <button role="tab" id="tab-perms" aria-controls="p-perms" data-tab="perms">Permissions</button>
+    </div>
+    <div class="panels">
+      <div role="tabpanel" id="p-chat" aria-labelledby="tab-chat" class="panel chatpanel">
+        <div id="msgs" class="msgs" tabindex="0" aria-label="Conversation log"></div>
+        <div id="chips" class="chips"></div>
+        <form id="chatform" class="chatform" autocomplete="off">
+          <label class="sr" for="chatin">Message to Pip</label>
+          <input id="chatin" type="text" aria-label="Message Pip" maxlength="200" placeholder="Try: run, approve, fix, level up, send it…">
+          <button class="btn primary" type="submit">Send</button>
+        </form>
+      </div>
+      <div role="tabpanel" id="p-task" aria-labelledby="tab-task" class="panel" hidden></div>
+      <div role="tabpanel" id="p-evidence" aria-labelledby="tab-evidence" class="panel" hidden></div>
+      <div role="tabpanel" id="p-perms" aria-labelledby="tab-perms" class="panel" hidden></div>
+    </div>
+  </section>
+</main>
+
+<footer class="events">
+  <div id="strip" class="strip" aria-label="Latest events"></div>
+  <details><summary>Full event log</summary><ol id="fulllog" class="mono"></ol></details>
+  <p class="fine">Pip's Workshop is an open prototype. Everything runs in your browser; progress is stored only in this browser's localStorage. <a href="https://github.com/sergevalovoi/pips-workshop" target="_blank" rel="noopener">Source &amp; feedback</a> · <a href="https://github.com/sergevalovoi/pips-workshop/issues/new/choose" target="_blank" rel="noopener">Report a problem</a></p>
+</footer>
+
+<dialog id="dlg-reset" aria-labelledby="dr-h"><form method="dialog">
+  <h2 id="dr-h">Reset the demo?</h2><p>This clears all progress stored in this browser for the demo. Export first if you want to keep it.</p>
+  <div class="row"><button class="btn" value="cancel">Keep my progress</button><button class="btn danger" value="ok" id="reset-ok">Reset</button></div>
+</form></dialog>
+<dialog id="dlg-help" aria-labelledby="dh-h"><form method="dialog">
+  <h2 id="dh-h">Keyboard shortcuts</h2>
+  <ul class="keys"><li><kbd>1</kbd>–<kbd>4</kbd> focus a station</li><li><kbd>←</kbd> <kbd>→</kbd> move between stations</li><li><kbd>C</kbd> chat input</li><li><kbd>A</kbd> approve · <kbd>E</kbd> request a fix · <kbd>R</kbd> reject (only while a draft awaits review)</li><li><kbd>?</kbd> this help · <kbd>Esc</kbd> close</li></ul>
+  <p class="fine">Shortcuts are off while you type in a field.</p>
+  <div class="row"><button class="btn primary" value="ok">Close</button></div>
+</form></dialog>
+<dialog id="dlg-about" aria-labelledby="da-h"><form method="dialog">
+  <h2 id="da-h">What is simulated</h2>
+  <p>Pip is a <strong>scripted</strong> character. There are no real model calls, no connected accounts and no network requests. The weekly data is synthetic and bundled with the page.</p>
+  <ul><li>Real in this demo: the state machine, progress saved in your browser, the rubric checks on the scripted drafts, the permission rules, export and reset.</li><li>Simulated: Pip's drafting, its questions, and any "proof". It shows how a teach, review, fix, rerun, delegate loop could work, not how well a real AI does it.</li><li>Nothing is ever sent anywhere.</li></ul>
+  <div class="row"><button class="btn primary" value="ok">Close</button></div>
+</form></dialog>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
