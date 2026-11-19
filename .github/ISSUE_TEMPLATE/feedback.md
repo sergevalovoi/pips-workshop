@@ -1,13 +1,11 @@
 ---
-name: Demo feedback
-about: Tell us where the demo was confusing or useful
+name: Alpha feedback
+about: Report a problem or friction (do NOT paste task text, notes, tokens, paths or e-mail)
 ---
-**What were you trying to do?**
+**Windows version / Node version:**
 
-**Where did you get stuck or confused?** (screen, step, or message)
+**Step where you got stuck (START, CHECK, create agent, rule edit, grant...):**
 
-**Did you finish the demo path (task, fix, rerun, delegate)?** yes / no / partly
+**What you expected / what happened (no private text):**
 
-**What would make you trust a coworker like this with a real recurring process?**
-
-**Browser and device:**
+**Milestone export attached? (optional; it contains no task text):**

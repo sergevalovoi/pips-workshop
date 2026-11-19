@@ -1,0 +1,15 @@
+{
+  "name": "bay-office-alpha",
+  "version": "0.2.0",
+  "description": "Bay Office portable pilot alpha: a visual local office for AI employees (uses your own Claude Code sign-in).",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js",
+    "check": "node scripts/preflight.js",
+    "test": "node --test tests/stub.test.js tests/adversarial.test.js tests/mvp.test.js tests/repair.test.js tests/alpha.test.js",
+    "test:browser": "node tests/browser-alpha.cjs"
+  },
+  "devDependencies": { "playwright": "^1.50.0" }
+}
