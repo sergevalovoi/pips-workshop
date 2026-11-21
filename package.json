@@ -1,6 +1,6 @@
 {
   "name": "bay-office-alpha",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Bay Office portable pilot alpha: a visual local office for AI employees (uses your own Claude Code sign-in).",
   "private": true,
   "license": "MIT",

@@ -1,4 +1,4 @@
-# Bay Office — portable alpha 0.2.0
+# Bay Office — portable alpha 0.2.1
 
 A visual local office for AI employees: you chat with an employee, give feedback, correct its rule, review two real cases, then explicitly allow bounded repeats. It runs on your own computer; inference goes through **your own** Claude Code sign-in. **Alpha for a small manual pilot. Not a hosted service, not a finished product.**
 
@@ -24,7 +24,7 @@ macOS/Linux: `npm start` may work but is **experimental and unverified**.
 - Auth method this alpha targets: Claude Code with a claude.ai sign-in. Other providers are not claimed.
 
 ## Known limitations
-Windows only tested. Verification so far is automated tests with stubs: **no live model run from this package and no usability validation**. The office scene is unchanged from the owner edition. Asset generator terms are unverified (see NOTICE.md). Schedules are finite and need the PC on.
+Windows only tested. On 21 November 2026, the 0.2.1 ZIP completed an automated UI acceptance run with four real Haiku calls: task, feedback, a second distinct case, and one scheduled draft using updated notes. The reviewer was an agent, not a person. **No human usability study has been conducted.** The office scene is unchanged from the owner edition. Asset generator terms are unverified (see NOTICE.md). Schedules are finite and need the PC on.
 
 ## Tests
 `npm test` (stubs only, no model calls). Browser tests: set `PLAYWRIGHT_PATH` to an installed playwright module, then `npm run test:browser` (Playwright is a devDependency, not bundled).
@@ -34,7 +34,7 @@ Windows only tested. Verification so far is automated tests with stubs: **no liv
 
 ---
 
-# Bay Office — портативная альфа 0.2.0 (RU)
+# Bay Office — портативная альфа 0.2.1 (RU)
 
 Визуальный локальный офис AI-сотрудников: чат → обратная связь → правка правила → два разных реальных кейса → явное разрешение ограниченных повторов. Работает на вашем компьютере; запросы идут через **ваш собственный** Claude Code. **Альфа для небольшого ручного пилота, не облачный сервис.**
 
@@ -49,4 +49,4 @@ Windows only tested. Verification so far is automated tests with stubs: **no liv
 Язык по умолчанию — английский; кнопка **RU** переключает и запоминает. Порт: `BAY_PORT`, папка данных: `BAY_DATA_DIR`. macOS/Linux — экспериментально, не проверено.
 
 ## Честные границы
-Правила — инструкции/примеры для модели, а не обучение весов. Два кейса разрешают узкие черновики, это не оценка компетентности. Лимит альфы (20 запросов, до 3 повторов) — лимит приложения, не квота Claude. Расписание работает только при включённом ПК. С этого пакета живых запусков и проверки юзабилити не было — только автотесты на заглушках.
+Правила — инструкции/примеры для модели, а не обучение весов. Два кейса разрешают узкие черновики, это не оценка компетентности. Лимит альфы (20 запросов, до 3 повторов) — лимит приложения, не квота Claude. Расписание работает только при включённом ПК. 21 ноября 2026 из ZIP версии 0.2.1 пройден реальный цикл через интерфейс: задача, обратная связь, второй кейс и плановый повтор с обновлённой заметкой; четыре обращения к Haiku. Проверял автоматический агент. Исследования с людьми ещё не было.

@@ -36,7 +36,8 @@ function resolveDataDir() {
   if (fs.existsSync(p)) {
     if (!fs.statSync(p).isDirectory()) fail('the data path exists and is not a folder.');
     const entries = fs.readdirSync(p);
-    if (entries.length && !entries.includes('instance.json')) fail('the data folder is not empty and is not a Bay Office data folder (no instance.json). Choose an empty or new folder.');
+    const foreign = entries.filter((n) => n !== 'server.out.log' && n !== 'server.err.log'); // the launcher creates these two log files before the server starts
+    if (foreign.length && !entries.includes('instance.json')) fail('the data folder is not empty and is not a Bay Office data folder (no instance.json). Choose an empty or new folder.');
   }
   return p;
 }

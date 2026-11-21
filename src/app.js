@@ -45,7 +45,7 @@ function createApp(opts) {
   const publicDir = opts.publicDir || path.join(__dirname, '..', 'public');
   for (const d of ['snapshots', 'receipts', 'reports', 'runtime']) fs.mkdirSync(path.join(dataDir, d), { recursive: true });
   const stateFile = path.join(dataDir, 'state.json');
-  const instanceId = opts.instanceId || null, edition = opts.edition || 'alpha', appVersion = opts.appVersion || '0.2.0';
+  const instanceId = opts.instanceId || null, edition = opts.edition || 'alpha', appVersion = opts.appVersion || '0.2.1';
   const milestones = require('./milestones');
   const launchToken = opts.launchToken || crypto.randomBytes(24).toString('base64url');
   const sessionSecret = crypto.randomBytes(32);

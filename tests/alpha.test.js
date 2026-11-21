@@ -149,6 +149,11 @@ test('server.js: foreign port rejected, bad port/data-dir rejected, data confine
   const nonEmpty = tmp('alpha-ne-'); fs.writeFileSync(path.join(nonEmpty, 'precious.txt'), 'x');
   const ne = startServer({ dataDir: nonEmpty, port: await freePort() }); assert.notEqual(await ne.exited, 0); assert.match(ne.err(), /not a Bay Office data folder/);
   assert.equal(fs.readdirSync(nonEmpty).join(), 'precious.txt');
+  // 0.2.1 regression: launcher pre-creates its two log files in a fresh custom BAY_DATA_DIR; that must still start
+  const logsOnly = tmp('alpha-lg-'); fs.writeFileSync(path.join(logsOnly, 'server.out.log'), ''); fs.writeFileSync(path.join(logsOnly, 'server.err.log'), '');
+  const lp = await freePort(); const lo = startServer({ dataDir: logsOnly, port: lp });
+  for (let i = 0; i < 40 && !fs.existsSync(path.join(logsOnly, 'server.port')); i++) await new Promise((r) => setTimeout(r, 250));
+  assert.ok(fs.existsSync(path.join(logsOnly, 'instance.json')), 'logs-only data folder must be accepted'); lo.child && lo.child.kill();
   const inSrc = startServer({ dataDir: path.join(ROOT, 'src', 'x'), port: await freePort() }); assert.notEqual(await inSrc.exited, 0); assert.match(inSrc.err(), /must not be/);
   assert.ok(!fs.existsSync(path.join(ROOT, 'src', 'x')));
 });
